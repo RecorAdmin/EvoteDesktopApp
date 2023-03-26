@@ -1,4 +1,4 @@
-namespace EvoteDestopApp
+namespace evoteRistrationApp
 {
     internal static class Program
     {

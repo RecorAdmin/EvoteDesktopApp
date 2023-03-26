@@ -1,4 +1,4 @@
-namespace EvoteDestopApp
+namespace evoteRistrationApp
 {
     public partial class Form1 : Form
     {
