@@ -1,0 +1,237 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="EvotesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="difParishes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Parish" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="registryRecord">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="titleID" Type="int" />
+          <Property Name="firstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="middleName" Type="nvarchar" MaxLength="50" />
+          <Property Name="lastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="district" Type="nvarchar" MaxLength="50" />
+          <Property Name="poBox" Type="nvarchar" MaxLength="50" />
+          <Property Name="gender" Type="nvarchar" MaxLength="50" />
+          <Property Name="dateOfBirth" Type="datetime" />
+          <Property Name="parishID" Type="int" />
+        </EntityType>
+        <EntityType Name="typeofTitle">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Ulogin">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="nvarchar" MaxLength="50" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="Record_difParishes_FK">
+          <End Role="difParishes" Type="Self.difParishes" Multiplicity="0..1" />
+          <End Role="registryRecord" Type="Self.registryRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="difParishes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="registryRecord">
+              <PropertyRef Name="parishID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Record_typeofTitle_FK">
+          <End Role="typeofTitle" Type="Self.typeofTitle" Multiplicity="0..1" />
+          <End Role="registryRecord" Type="Self.registryRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="typeofTitle">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="registryRecord">
+              <PropertyRef Name="titleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EvotesModelStoreContainer">
+          <EntitySet Name="difParishes" EntityType="Self.difParishes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="registryRecord" EntityType="Self.registryRecord" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="typeofTitle" EntityType="Self.typeofTitle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ulogin" EntityType="Self.Ulogin" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="Record_difParishes_FK" Association="Self.Record_difParishes_FK">
+            <End Role="difParishes" EntitySet="difParishes" />
+            <End Role="registryRecord" EntitySet="registryRecord" />
+          </AssociationSet>
+          <AssociationSet Name="Record_typeofTitle_FK" Association="Self.Record_typeofTitle_FK">
+            <End Role="typeofTitle" EntitySet="typeofTitle" />
+            <End Role="registryRecord" EntitySet="registryRecord" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EvotesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="difParish">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Parish" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="registryRecords" Relationship="Self.Record_difParishes_FK" FromRole="difParishes" ToRole="registryRecord" />
+        </EntityType>
+        <EntityType Name="registryRecord">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="titleID" Type="Int32" />
+          <Property Name="firstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="middleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="district" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="poBox" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="dateOfBirth" Type="DateTime" Precision="3" />
+          <Property Name="parishID" Type="Int32" />
+          <NavigationProperty Name="difParish" Relationship="Self.Record_difParishes_FK" FromRole="registryRecord" ToRole="difParishes" />
+          <NavigationProperty Name="typeofTitle" Relationship="Self.Record_typeofTitle_FK" FromRole="registryRecord" ToRole="typeofTitle" />
+        </EntityType>
+        <EntityType Name="typeofTitle">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="registryRecords" Relationship="Self.Record_typeofTitle_FK" FromRole="typeofTitle" ToRole="registryRecord" />
+        </EntityType>
+        <EntityType Name="Ulogin">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="Record_difParishes_FK">
+          <End Role="difParishes" Type="Self.difParish" Multiplicity="0..1" />
+          <End Role="registryRecord" Type="Self.registryRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="difParishes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="registryRecord">
+              <PropertyRef Name="parishID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Record_typeofTitle_FK">
+          <End Role="typeofTitle" Type="Self.typeofTitle" Multiplicity="0..1" />
+          <End Role="registryRecord" Type="Self.registryRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="typeofTitle">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="registryRecord">
+              <PropertyRef Name="titleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EvotesEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="difParishes" EntityType="Self.difParish" />
+          <EntitySet Name="registryRecords" EntityType="Self.registryRecord" />
+          <EntitySet Name="typeofTitles" EntityType="Self.typeofTitle" />
+          <EntitySet Name="Ulogins" EntityType="Self.Ulogin" />
+          <AssociationSet Name="Record_difParishes_FK" Association="Self.Record_difParishes_FK">
+            <End Role="difParishes" EntitySet="difParishes" />
+            <End Role="registryRecord" EntitySet="registryRecords" />
+          </AssociationSet>
+          <AssociationSet Name="Record_typeofTitle_FK" Association="Self.Record_typeofTitle_FK">
+            <End Role="typeofTitle" EntitySet="typeofTitles" />
+            <End Role="registryRecord" EntitySet="registryRecords" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EvotesModelStoreContainer" CdmEntityContainer="EvotesEntities2">
+          <EntitySetMapping Name="difParishes">
+            <EntityTypeMapping TypeName="EvotesModel.difParish">
+              <MappingFragment StoreEntitySet="difParishes">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Parish" ColumnName="Parish" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="registryRecords">
+            <EntityTypeMapping TypeName="EvotesModel.registryRecord">
+              <MappingFragment StoreEntitySet="registryRecord">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="titleID" ColumnName="titleID" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="middleName" ColumnName="middleName" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="district" ColumnName="district" />
+                <ScalarProperty Name="poBox" ColumnName="poBox" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="dateOfBirth" ColumnName="dateOfBirth" />
+                <ScalarProperty Name="parishID" ColumnName="parishID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="typeofTitles">
+            <EntityTypeMapping TypeName="EvotesModel.typeofTitle">
+              <MappingFragment StoreEntitySet="typeofTitle">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="title" ColumnName="title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ulogins">
+            <EntityTypeMapping TypeName="EvotesModel.Ulogin">
+              <MappingFragment StoreEntitySet="Ulogin">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

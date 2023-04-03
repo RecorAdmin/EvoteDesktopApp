@@ -19,16 +19,33 @@ namespace WindowsFormsApp1
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            string username = tbUsername.Text;
-            string loginPass = tbloginPassword.Text;
 
-            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(loginPass))
+            try
             {
-                MessageBox.Show("Please Enter Missing Data!!");
+                string username = tbUsername.Text;
+                string loginPass = tbloginPassword.Text;
+
+                var isValid = true;
+                var errorCode = "";
+
+                    if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(loginPass))
+                    {
+                        isValid = false;
+                        errorCode += ("Please Enter Missing Data \n\r");
+
+                    }
+
+                    if (username != null && string.IsNullOrWhiteSpace(loginPass) || string.IsNullOrWhiteSpace(username) && loginPass != null)
+                    {
+                        isValid = false;
+                        errorCode += ("Username or Password is incorrect \n\r");
+                    }
+                }catch  
+                (Exception ex) { 
+
+                    throw;
+                 }
             }
-
-
-        }
 
         private void linkRegis_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {

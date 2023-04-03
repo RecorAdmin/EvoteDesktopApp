@@ -131,21 +131,6 @@
             // 
             this.ParishcomboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ParishcomboBox.FormattingEnabled = true;
-            this.ParishcomboBox.Items.AddRange(new object[] {
-            "Hanover",
-            "St. Elizabeth",
-            "St. James",
-            "Trelawny",
-            "Westmoreland",
-            "Clarendon",
-            "Manchester",
-            "St. Ann",
-            "St. Catherine",
-            "St. Mary",
-            "Kingston ",
-            "Portland",
-            "St. Andrew",
-            "St. Thomas"});
             this.ParishcomboBox.Location = new System.Drawing.Point(69, 218);
             this.ParishcomboBox.Name = "ParishcomboBox";
             this.ParishcomboBox.Size = new System.Drawing.Size(81, 21);
@@ -383,14 +368,14 @@
             this.EvotesLogo.TabIndex = 28;
             this.EvotesLogo.Text = "Evotes";
             // 
-            // Form2
+            // RegisterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 496);
             this.Controls.Add(this.gboxRegis);
             this.Controls.Add(this.EvotesLogo);
-            this.Name = "Form2";
+            this.Name = "RegisterForm";
             this.Text = "RegisterForm";
             this.gboxRegis.ResumeLayout(false);
             this.gboxRegis.PerformLayout();
