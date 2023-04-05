@@ -27,13 +27,6 @@
           <Property Name="dateOfBirth" Type="datetime" />
           <Property Name="parishID" Type="int" />
         </EntityType>
-        <EntityType Name="typeofTitle">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="title" Type="nvarchar" MaxLength="50" />
-        </EntityType>
         <EntityType Name="Ulogin">
           <Key>
             <PropertyRef Name="ID" />
@@ -54,29 +47,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="Record_typeofTitle_FK">
-          <End Role="typeofTitle" Type="Self.typeofTitle" Multiplicity="0..1" />
-          <End Role="registryRecord" Type="Self.registryRecord" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="typeofTitle">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="registryRecord">
-              <PropertyRef Name="titleID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="EvotesModelStoreContainer">
           <EntitySet Name="difParishes" EntityType="Self.difParishes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="registryRecord" EntityType="Self.registryRecord" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="typeofTitle" EntityType="Self.typeofTitle" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ulogin" EntityType="Self.Ulogin" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="Record_difParishes_FK" Association="Self.Record_difParishes_FK">
             <End Role="difParishes" EntitySet="difParishes" />
-            <End Role="registryRecord" EntitySet="registryRecord" />
-          </AssociationSet>
-          <AssociationSet Name="Record_typeofTitle_FK" Association="Self.Record_typeofTitle_FK">
-            <End Role="typeofTitle" EntitySet="typeofTitle" />
             <End Role="registryRecord" EntitySet="registryRecord" />
           </AssociationSet>
         </EntityContainer>
@@ -108,15 +84,6 @@
           <Property Name="dateOfBirth" Type="DateTime" Precision="3" />
           <Property Name="parishID" Type="Int32" />
           <NavigationProperty Name="difParish" Relationship="Self.Record_difParishes_FK" FromRole="registryRecord" ToRole="difParishes" />
-          <NavigationProperty Name="typeofTitle" Relationship="Self.Record_typeofTitle_FK" FromRole="registryRecord" ToRole="typeofTitle" />
-        </EntityType>
-        <EntityType Name="typeofTitle">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="registryRecords" Relationship="Self.Record_typeofTitle_FK" FromRole="typeofTitle" ToRole="registryRecord" />
         </EntityType>
         <EntityType Name="Ulogin">
           <Key>
@@ -138,29 +105,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="Record_typeofTitle_FK">
-          <End Role="typeofTitle" Type="Self.typeofTitle" Multiplicity="0..1" />
-          <End Role="registryRecord" Type="Self.registryRecord" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="typeofTitle">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="registryRecord">
-              <PropertyRef Name="titleID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="EvotesEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="difParishes" EntityType="Self.difParish" />
           <EntitySet Name="registryRecords" EntityType="Self.registryRecord" />
-          <EntitySet Name="typeofTitles" EntityType="Self.typeofTitle" />
           <EntitySet Name="Ulogins" EntityType="Self.Ulogin" />
           <AssociationSet Name="Record_difParishes_FK" Association="Self.Record_difParishes_FK">
             <End Role="difParishes" EntitySet="difParishes" />
-            <End Role="registryRecord" EntitySet="registryRecords" />
-          </AssociationSet>
-          <AssociationSet Name="Record_typeofTitle_FK" Association="Self.Record_typeofTitle_FK">
-            <End Role="typeofTitle" EntitySet="typeofTitles" />
             <End Role="registryRecord" EntitySet="registryRecords" />
           </AssociationSet>
         </EntityContainer>
@@ -191,14 +141,6 @@
                 <ScalarProperty Name="gender" ColumnName="gender" />
                 <ScalarProperty Name="dateOfBirth" ColumnName="dateOfBirth" />
                 <ScalarProperty Name="parishID" ColumnName="parishID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="typeofTitles">
-            <EntityTypeMapping TypeName="EvotesModel.typeofTitle">
-              <MappingFragment StoreEntitySet="typeofTitle">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="title" ColumnName="title" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

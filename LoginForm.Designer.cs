@@ -139,7 +139,7 @@
             this.linkRegis.Text = "Register Now!";
             this.linkRegis.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkRegis_LinkClicked);
             // 
-            // Form1
+            // LoginForm
             // 
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.PageTabList;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -151,9 +151,9 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.gboxLogin);
             this.Controls.Add(this.label1);
-            this.Name = "Form1";
+            this.Name = "LoginForm";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.Text = "LoginForm";
+            this.Text = "Login";
             this.gboxLogin.ResumeLayout(false);
             this.gboxLogin.PerformLayout();
             this.ResumeLayout(false);

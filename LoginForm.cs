@@ -12,8 +12,11 @@ namespace WindowsFormsApp1
 {
     public partial class LoginForm : Form
     {
+        private readonly EvotesEntities2 evotesEntity;
+
         public LoginForm()
         {
+            evotesEntity = new EvotesEntities2();
             InitializeComponent();
         }
 
@@ -22,34 +25,43 @@ namespace WindowsFormsApp1
 
             try
             {
+                
+
                 string username = tbUsername.Text;
                 string loginPass = tbloginPassword.Text;
 
-                var isValid = true;
+                var valid = true;
                 var errorCode = "";
 
                     if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(loginPass))
                     {
-                        isValid = false;
+                        valid = false;
                         errorCode += ("Please Enter Missing Data \n\r");
 
                     }
 
                     if (username != null && string.IsNullOrWhiteSpace(loginPass) || string.IsNullOrWhiteSpace(username) && loginPass != null)
                     {
-                        isValid = false;
+                        valid = false;
                         errorCode += ("Username or Password is incorrect \n\r");
                     }
-                }catch  
-                (Exception ex) { 
 
-                    throw;
-                 }
+                if (valid)
+                {
+                    MainForm mainWindow = new MainForm();
+                    mainWindow.ShowDialog();
+                }
+                }catch  
+                (Exception ex) {
+
+                MessageBox.Show(ex.Message);
+                // throw;
+            }
             }
 
         private void linkRegis_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            var reglink = new RegisterForm();
+            var reglink = new RegistryForm();
             reglink.Show();
         }
     }

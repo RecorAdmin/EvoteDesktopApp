@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApp1
 {
-    partial class RegisterForm
+    partial class RegistryForm
     {
         /// <summary>
         /// Required designer variable.
@@ -33,7 +33,6 @@
             this.Communitylabel = new System.Windows.Forms.Label();
             this.Parishlabel = new System.Windows.Forms.Label();
             this.ParishcomboBox = new System.Windows.Forms.ComboBox();
-            this.TitlecomboBox = new System.Windows.Forms.ComboBox();
             this.btnSighnUp = new System.Windows.Forms.Button();
             this.CPasslabel = new System.Windows.Forms.Label();
             this.tbRgCPass = new System.Windows.Forms.TextBox();
@@ -54,7 +53,6 @@
             this.Lnamelabel = new System.Windows.Forms.Label();
             this.MidNamelabel = new System.Windows.Forms.Label();
             this.fnamelabel = new System.Windows.Forms.Label();
-            this.title = new System.Windows.Forms.Label();
             this.tbLname = new System.Windows.Forms.TextBox();
             this.tbMname = new System.Windows.Forms.TextBox();
             this.tbFname = new System.Windows.Forms.TextBox();
@@ -68,7 +66,6 @@
             this.gboxRegis.Controls.Add(this.Communitylabel);
             this.gboxRegis.Controls.Add(this.Parishlabel);
             this.gboxRegis.Controls.Add(this.ParishcomboBox);
-            this.gboxRegis.Controls.Add(this.TitlecomboBox);
             this.gboxRegis.Controls.Add(this.btnSighnUp);
             this.gboxRegis.Controls.Add(this.CPasslabel);
             this.gboxRegis.Controls.Add(this.tbRgCPass);
@@ -89,13 +86,12 @@
             this.gboxRegis.Controls.Add(this.Lnamelabel);
             this.gboxRegis.Controls.Add(this.MidNamelabel);
             this.gboxRegis.Controls.Add(this.fnamelabel);
-            this.gboxRegis.Controls.Add(this.title);
             this.gboxRegis.Controls.Add(this.tbLname);
             this.gboxRegis.Controls.Add(this.tbMname);
             this.gboxRegis.Controls.Add(this.tbFname);
-            this.gboxRegis.Location = new System.Drawing.Point(129, 64);
+            this.gboxRegis.Location = new System.Drawing.Point(167, 64);
             this.gboxRegis.Name = "gboxRegis";
-            this.gboxRegis.Size = new System.Drawing.Size(542, 387);
+            this.gboxRegis.Size = new System.Drawing.Size(488, 387);
             this.gboxRegis.TabIndex = 29;
             this.gboxRegis.TabStop = false;
             this.gboxRegis.Text = "Registration ";
@@ -136,28 +132,16 @@
             this.ParishcomboBox.Size = new System.Drawing.Size(81, 21);
             this.ParishcomboBox.TabIndex = 28;
             // 
-            // TitlecomboBox
-            // 
-            this.TitlecomboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.TitlecomboBox.FormattingEnabled = true;
-            this.TitlecomboBox.Items.AddRange(new object[] {
-            "Mr.",
-            "Mrs.",
-            "Miss"});
-            this.TitlecomboBox.Location = new System.Drawing.Point(69, 51);
-            this.TitlecomboBox.Name = "TitlecomboBox";
-            this.TitlecomboBox.Size = new System.Drawing.Size(40, 21);
-            this.TitlecomboBox.TabIndex = 27;
-            // 
             // btnSighnUp
             // 
             this.btnSighnUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSighnUp.Location = new System.Drawing.Point(424, 340);
+            this.btnSighnUp.Location = new System.Drawing.Point(377, 340);
             this.btnSighnUp.Name = "btnSighnUp";
             this.btnSighnUp.Size = new System.Drawing.Size(75, 23);
             this.btnSighnUp.TabIndex = 26;
             this.btnSighnUp.Text = "Sign Up";
             this.btnSighnUp.UseVisualStyleBackColor = true;
+            this.btnSighnUp.Click += new System.EventHandler(this.btnSighnUp_Click);
             // 
             // CPasslabel
             // 
@@ -230,9 +214,9 @@
             this.Namelabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Namelabel.Location = new System.Drawing.Point(65, 33);
             this.Namelabel.Name = "Namelabel";
-            this.Namelabel.Size = new System.Drawing.Size(82, 13);
+            this.Namelabel.Size = new System.Drawing.Size(43, 13);
             this.Namelabel.TabIndex = 17;
-            this.Namelabel.Text = "Name / Title:";
+            this.Namelabel.Text = "Name:";
             // 
             // Addresslabel
             // 
@@ -304,7 +288,7 @@
             // Lnamelabel
             // 
             this.Lnamelabel.AutoSize = true;
-            this.Lnamelabel.Location = new System.Drawing.Point(372, 74);
+            this.Lnamelabel.Location = new System.Drawing.Point(325, 72);
             this.Lnamelabel.Name = "Lnamelabel";
             this.Lnamelabel.Size = new System.Drawing.Size(58, 13);
             this.Lnamelabel.TabIndex = 8;
@@ -313,7 +297,7 @@
             // MidNamelabel
             // 
             this.MidNamelabel.AutoSize = true;
-            this.MidNamelabel.Location = new System.Drawing.Point(242, 74);
+            this.MidNamelabel.Location = new System.Drawing.Point(195, 72);
             this.MidNamelabel.Name = "MidNamelabel";
             this.MidNamelabel.Size = new System.Drawing.Size(69, 13);
             this.MidNamelabel.TabIndex = 7;
@@ -322,38 +306,29 @@
             // fnamelabel
             // 
             this.fnamelabel.AutoSize = true;
-            this.fnamelabel.Location = new System.Drawing.Point(112, 74);
+            this.fnamelabel.Location = new System.Drawing.Point(65, 72);
             this.fnamelabel.Name = "fnamelabel";
             this.fnamelabel.Size = new System.Drawing.Size(57, 13);
             this.fnamelabel.TabIndex = 6;
             this.fnamelabel.Text = "First Name";
             // 
-            // title
-            // 
-            this.title.AutoSize = true;
-            this.title.Location = new System.Drawing.Point(65, 74);
-            this.title.Name = "title";
-            this.title.Size = new System.Drawing.Size(27, 13);
-            this.title.TabIndex = 5;
-            this.title.Text = "Title";
-            // 
             // tbLname
             // 
-            this.tbLname.Location = new System.Drawing.Point(375, 51);
+            this.tbLname.Location = new System.Drawing.Point(328, 49);
             this.tbLname.Name = "tbLname";
             this.tbLname.Size = new System.Drawing.Size(124, 20);
             this.tbLname.TabIndex = 4;
             // 
             // tbMname
             // 
-            this.tbMname.Location = new System.Drawing.Point(245, 51);
+            this.tbMname.Location = new System.Drawing.Point(198, 49);
             this.tbMname.Name = "tbMname";
             this.tbMname.Size = new System.Drawing.Size(124, 20);
             this.tbMname.TabIndex = 3;
             // 
             // tbFname
             // 
-            this.tbFname.Location = new System.Drawing.Point(115, 51);
+            this.tbFname.Location = new System.Drawing.Point(68, 49);
             this.tbFname.Name = "tbFname";
             this.tbFname.Size = new System.Drawing.Size(124, 20);
             this.tbFname.TabIndex = 2;
@@ -377,6 +352,7 @@
             this.Controls.Add(this.EvotesLogo);
             this.Name = "RegisterForm";
             this.Text = "RegisterForm";
+            this.Load += new System.EventHandler(this.RegisterForm_Load);
             this.gboxRegis.ResumeLayout(false);
             this.gboxRegis.PerformLayout();
             this.ResumeLayout(false);
@@ -391,7 +367,6 @@
         private System.Windows.Forms.Label Communitylabel;
         private System.Windows.Forms.Label Parishlabel;
         private System.Windows.Forms.ComboBox ParishcomboBox;
-        private System.Windows.Forms.ComboBox TitlecomboBox;
         private System.Windows.Forms.Button btnSighnUp;
         private System.Windows.Forms.Label CPasslabel;
         private System.Windows.Forms.TextBox tbRgCPass;
@@ -412,7 +387,6 @@
         private System.Windows.Forms.Label Lnamelabel;
         private System.Windows.Forms.Label MidNamelabel;
         private System.Windows.Forms.Label fnamelabel;
-        private System.Windows.Forms.Label title;
         private System.Windows.Forms.TextBox tbLname;
         private System.Windows.Forms.TextBox tbMname;
         private System.Windows.Forms.TextBox tbFname;
