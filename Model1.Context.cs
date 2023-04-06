@@ -27,7 +27,6 @@ namespace WindowsFormsApp1
     
         public virtual DbSet<difParish> difParishes { get; set; }
         public virtual DbSet<registryRecord> registryRecords { get; set; }
-        public virtual DbSet<typeofTitle> typeofTitles { get; set; }
         public virtual DbSet<Ulogin> Ulogins { get; set; }
     }
 }

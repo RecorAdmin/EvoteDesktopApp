@@ -26,6 +26,5 @@ namespace WindowsFormsApp1
         public Nullable<int> parishID { get; set; }
     
         public virtual difParish difParish { get; set; }
-        public virtual typeofTitle typeofTitle { get; set; }
     }
 }
