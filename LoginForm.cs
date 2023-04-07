@@ -12,11 +12,11 @@ namespace WindowsFormsApp1
 {
     public partial class LoginForm : Form
     {
-        private readonly EvotesEntities2 evotesEntity;
+        private readonly EvotesEntities _db;
 
         public LoginForm()
         {
-            evotesEntity = new EvotesEntities2();
+            _db = new EvotesEntities();
             InitializeComponent();
         }
 
@@ -50,9 +50,11 @@ namespace WindowsFormsApp1
                 {
                     MainForm mainWindow = new MainForm();
                     mainWindow.ShowDialog();
+                    this.Hide();
+
                 }
                 }catch  
-                (Exception ex) {
+                (Exception ex) { 
 
                 MessageBox.Show(ex.Message);
                 // throw;
@@ -63,6 +65,8 @@ namespace WindowsFormsApp1
         {
             var reglink = new RegistryForm();
             reglink.Show();
+            this.Hide();
+
         }
     }
 }

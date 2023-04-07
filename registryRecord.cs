@@ -15,9 +15,8 @@ namespace WindowsFormsApp1
     public partial class registryRecord
     {
         public int ID { get; set; }
-        public Nullable<int> titleID { get; set; }
         public string firstName { get; set; }
-        public string middleName { get; set; }
+        public string middleInitial { get; set; }
         public string lastName { get; set; }
         public string district { get; set; }
         public string poBox { get; set; }

@@ -13,9 +13,9 @@ namespace WindowsFormsApp1
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class EvotesEntities2 : DbContext
+    public partial class EvotesEntities : DbContext
     {
-        public EvotesEntities2()
+        public EvotesEntities()
             : base("name=EvotesEntities2")
         {
         }

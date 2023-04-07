@@ -17,9 +17,8 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="titleID" Type="int" />
           <Property Name="firstName" Type="nvarchar" MaxLength="50" />
-          <Property Name="middleName" Type="nvarchar" MaxLength="50" />
+          <Property Name="middleInitial" Type="nvarchar" MaxLength="50" />
           <Property Name="lastName" Type="nvarchar" MaxLength="50" />
           <Property Name="district" Type="nvarchar" MaxLength="50" />
           <Property Name="poBox" Type="nvarchar" MaxLength="50" />
@@ -32,8 +31,8 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="username" Type="nvarchar" MaxLength="50" />
-          <Property Name="password" Type="nvarchar" MaxLength="50" />
+          <Property Name="username" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <Association Name="FK_registryRecord_difParishes">
           <End Role="difParishes" Type="Self.difParishes" Multiplicity="0..1" />
@@ -60,43 +59,51 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="EvotesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="EvotesEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="difParishes" EntityType="EvotesModel.difParish" />
+          <EntitySet Name="registryRecords" EntityType="EvotesModel.registryRecord" />
+          <EntitySet Name="Ulogins" EntityType="EvotesModel.Ulogin" />
+          <AssociationSet Name="FK_registryRecord_difParishes" Association="EvotesModel.FK_registryRecord_difParishes">
+            <End Role="difParish" EntitySet="difParishes" />
+            <End Role="registryRecord" EntitySet="registryRecords" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="difParish">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Parish" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="registryRecords" Relationship="Self.Record_difParishes_FK" FromRole="difParishes" ToRole="registryRecord" />
+          <NavigationProperty Name="registryRecords" Relationship="EvotesModel.FK_registryRecord_difParishes" FromRole="difParish" ToRole="registryRecord" />
         </EntityType>
         <EntityType Name="registryRecord">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="titleID" Type="Int32" />
           <Property Name="firstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="middleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="middleInitial" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="district" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="poBox" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="dateOfBirth" Type="DateTime" Precision="3" />
           <Property Name="parishID" Type="Int32" />
-          <NavigationProperty Name="difParish" Relationship="Self.Record_difParishes_FK" FromRole="registryRecord" ToRole="difParishes" />
+          <NavigationProperty Name="difParish" Relationship="EvotesModel.FK_registryRecord_difParishes" FromRole="registryRecord" ToRole="difParish" />
         </EntityType>
         <EntityType Name="Ulogin">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
-        <Association Name="Record_difParishes_FK">
-          <End Role="difParishes" Type="Self.difParish" Multiplicity="0..1" />
-          <End Role="registryRecord" Type="Self.registryRecord" Multiplicity="*" />
+        <Association Name="FK_registryRecord_difParishes">
+          <End Type="EvotesModel.difParish" Role="difParish" Multiplicity="0..1" />
+          <End Type="EvotesModel.registryRecord" Role="registryRecord" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="difParishes">
+            <Principal Role="difParish">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="registryRecord">
@@ -104,15 +111,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="EvotesEntities2" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="difParishes" EntityType="Self.difParish" />
-          <EntitySet Name="registryRecords" EntityType="Self.registryRecord" />
-          <EntitySet Name="Ulogins" EntityType="Self.Ulogin" />
-          <AssociationSet Name="Record_difParishes_FK" Association="Self.Record_difParishes_FK">
-            <End Role="difParishes" EntitySet="difParishes" />
-            <End Role="registryRecord" EntitySet="registryRecords" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -122,33 +120,32 @@
           <EntitySetMapping Name="difParishes">
             <EntityTypeMapping TypeName="EvotesModel.difParish">
               <MappingFragment StoreEntitySet="difParishes">
-                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Parish" ColumnName="Parish" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="registryRecords">
             <EntityTypeMapping TypeName="EvotesModel.registryRecord">
               <MappingFragment StoreEntitySet="registryRecord">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="titleID" ColumnName="titleID" />
-                <ScalarProperty Name="firstName" ColumnName="firstName" />
-                <ScalarProperty Name="middleName" ColumnName="middleName" />
-                <ScalarProperty Name="lastName" ColumnName="lastName" />
-                <ScalarProperty Name="district" ColumnName="district" />
-                <ScalarProperty Name="poBox" ColumnName="poBox" />
-                <ScalarProperty Name="gender" ColumnName="gender" />
-                <ScalarProperty Name="dateOfBirth" ColumnName="dateOfBirth" />
                 <ScalarProperty Name="parishID" ColumnName="parishID" />
+                <ScalarProperty Name="dateOfBirth" ColumnName="dateOfBirth" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="poBox" ColumnName="poBox" />
+                <ScalarProperty Name="district" ColumnName="district" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="middleInitial" ColumnName="middleInitial" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Ulogins">
             <EntityTypeMapping TypeName="EvotesModel.Ulogin">
               <MappingFragment StoreEntitySet="Ulogin">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="username" ColumnName="username" />
                 <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

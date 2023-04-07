@@ -12,12 +12,12 @@ namespace WindowsFormsApp1
 {
     public partial class RegistryForm : Form
     {
-        private readonly EvotesEntities2 evotesEntity;
+        private readonly EvotesEntities _db;
         public RegistryForm()
         {
             InitializeComponent();
             //initializing an instance of the database entity
-            evotesEntity = new EvotesEntities2();
+            _db = new EvotesEntities();
         }
 
 
@@ -27,9 +27,20 @@ namespace WindowsFormsApp1
             {
                 //passing the text entered into the text box to variables
                 string fname = tbFname.Text;
-                string mname = tbMname.Text;
+                string mInit = tbmInitial.Text;
                 string lname = tbLname.Text;
-                string gender = Genderlabel.Text;
+
+                string gender = null;
+                if(MaleradioButton.Checked) 
+                {
+                    gender = MaleradioButton.Text; 
+                }else if(FemaleradioButton.Checked)
+                {
+                    gender = FemaleradioButton.Text;
+                }else if (OtherradioButton.Checked)
+                {
+                    gender = OtherradioButton.Text;
+                }
                 var dob = DOBdateTimePicker.Value;
                 var parish = ParishcomboBox.Text;
                 string community = tbCommunity.Text;
@@ -44,7 +55,7 @@ namespace WindowsFormsApp1
                 var errorMessage = "";
 
                 if(string.IsNullOrWhiteSpace(cPass) || string.IsNullOrWhiteSpace(pass) || string.IsNullOrWhiteSpace(email)
-                    || string.IsNullOrWhiteSpace(fname) || string.IsNullOrWhiteSpace(lname) || string.IsNullOrWhiteSpace(gender))
+                    || string.IsNullOrWhiteSpace(fname) || string.IsNullOrWhiteSpace(lname))
                 {
                     Valid = false;
                     errorMessage += "Error! Please enter missing information!";
@@ -66,7 +77,7 @@ namespace WindowsFormsApp1
 
                     //passing variable with content to the database(s)object
                     registryRecord.firstName = fname;
-                    registryRecord.middleName = mname;
+                    registryRecord.middleInitial = mInit;
                     registryRecord.lastName = lname;
                     registryRecord.gender = gender;
                     registryRecord.dateOfBirth = dob;
@@ -77,15 +88,24 @@ namespace WindowsFormsApp1
                     loginRecord.username = email;
                     loginRecord.password = pass;
 
-                    //addint data entered to the actual database
-                    evotesEntity.registryRecords.Add(registryRecord);
-                    evotesEntity.Ulogins.Add(loginRecord);
+                    
 
                     //message box to show after a valid form completion
-                    MessageBox.Show($"Name: {fname} {mname} {lname}\n\r" +
+                    MessageBox.Show($"Name: {fname} {mInit} {lname}\n\r" +
                         $"Gender: {gender}\n\r" +
                         $"Address: {parish}, {community}, {po}\n\r" +
-                        $"Email: {email}");
+                        $"Email/Username: {email}");
+
+                    //adding data entered to the actual database
+                    _db.registryRecords.Add( registryRecord );
+                    _db.Ulogins.Add( loginRecord );
+                    _db.SaveChanges();
+
+                    var login = new LoginForm();
+                    this.Close();
+                    login.Show();
+
+                    
                 }
                 else
                 {
@@ -102,7 +122,7 @@ namespace WindowsFormsApp1
         private void RegisterForm_Load(object sender, EventArgs e)
         {
             //to pass content in database to the form upon load event being activated
-            var Parish = evotesEntity.difParishes.ToList();
+            var Parish = _db.difParishes.ToList();
             ParishcomboBox.DisplayMember = "Parish";
             ParishcomboBox.ValueMember = "ID";
             ParishcomboBox.DataSource = Parish;

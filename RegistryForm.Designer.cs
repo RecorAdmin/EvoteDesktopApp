@@ -54,7 +54,7 @@
             this.MidNamelabel = new System.Windows.Forms.Label();
             this.fnamelabel = new System.Windows.Forms.Label();
             this.tbLname = new System.Windows.Forms.TextBox();
-            this.tbMname = new System.Windows.Forms.TextBox();
+            this.tbmInitial = new System.Windows.Forms.TextBox();
             this.tbFname = new System.Windows.Forms.TextBox();
             this.EvotesLogo = new System.Windows.Forms.Label();
             this.gboxRegis.SuspendLayout();
@@ -87,7 +87,7 @@
             this.gboxRegis.Controls.Add(this.MidNamelabel);
             this.gboxRegis.Controls.Add(this.fnamelabel);
             this.gboxRegis.Controls.Add(this.tbLname);
-            this.gboxRegis.Controls.Add(this.tbMname);
+            this.gboxRegis.Controls.Add(this.tbmInitial);
             this.gboxRegis.Controls.Add(this.tbFname);
             this.gboxRegis.Location = new System.Drawing.Point(167, 64);
             this.gboxRegis.Name = "gboxRegis";
@@ -135,7 +135,7 @@
             // btnSighnUp
             // 
             this.btnSighnUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSighnUp.Location = new System.Drawing.Point(377, 340);
+            this.btnSighnUp.Location = new System.Drawing.Point(335, 340);
             this.btnSighnUp.Name = "btnSighnUp";
             this.btnSighnUp.Size = new System.Drawing.Size(75, 23);
             this.btnSighnUp.TabIndex = 26;
@@ -288,7 +288,7 @@
             // Lnamelabel
             // 
             this.Lnamelabel.AutoSize = true;
-            this.Lnamelabel.Location = new System.Drawing.Point(325, 72);
+            this.Lnamelabel.Location = new System.Drawing.Point(283, 72);
             this.Lnamelabel.Name = "Lnamelabel";
             this.Lnamelabel.Size = new System.Drawing.Size(58, 13);
             this.Lnamelabel.TabIndex = 8;
@@ -297,11 +297,11 @@
             // MidNamelabel
             // 
             this.MidNamelabel.AutoSize = true;
-            this.MidNamelabel.Location = new System.Drawing.Point(195, 72);
+            this.MidNamelabel.Location = new System.Drawing.Point(206, 72);
             this.MidNamelabel.Name = "MidNamelabel";
-            this.MidNamelabel.Size = new System.Drawing.Size(69, 13);
+            this.MidNamelabel.Size = new System.Drawing.Size(65, 13);
             this.MidNamelabel.TabIndex = 7;
-            this.MidNamelabel.Text = "Middle Name";
+            this.MidNamelabel.Text = "Middle Initial";
             // 
             // fnamelabel
             // 
@@ -314,17 +314,17 @@
             // 
             // tbLname
             // 
-            this.tbLname.Location = new System.Drawing.Point(328, 49);
+            this.tbLname.Location = new System.Drawing.Point(286, 49);
             this.tbLname.Name = "tbLname";
             this.tbLname.Size = new System.Drawing.Size(124, 20);
             this.tbLname.TabIndex = 4;
             // 
-            // tbMname
+            // tbmInitial
             // 
-            this.tbMname.Location = new System.Drawing.Point(198, 49);
-            this.tbMname.Name = "tbMname";
-            this.tbMname.Size = new System.Drawing.Size(124, 20);
-            this.tbMname.TabIndex = 3;
+            this.tbmInitial.Location = new System.Drawing.Point(209, 49);
+            this.tbmInitial.Name = "tbmInitial";
+            this.tbmInitial.Size = new System.Drawing.Size(62, 20);
+            this.tbmInitial.TabIndex = 3;
             // 
             // tbFname
             // 
@@ -343,14 +343,16 @@
             this.EvotesLogo.TabIndex = 28;
             this.EvotesLogo.Text = "Evotes";
             // 
-            // RegisterForm
+            // RegistryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(800, 496);
             this.Controls.Add(this.gboxRegis);
             this.Controls.Add(this.EvotesLogo);
-            this.Name = "RegisterForm";
+            this.Name = "RegistryForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "RegisterForm";
             this.Load += new System.EventHandler(this.RegisterForm_Load);
             this.gboxRegis.ResumeLayout(false);
@@ -388,7 +390,7 @@
         private System.Windows.Forms.Label MidNamelabel;
         private System.Windows.Forms.Label fnamelabel;
         private System.Windows.Forms.TextBox tbLname;
-        private System.Windows.Forms.TextBox tbMname;
+        private System.Windows.Forms.TextBox tbmInitial;
         private System.Windows.Forms.TextBox tbFname;
         private System.Windows.Forms.Label EvotesLogo;
     }

@@ -82,6 +82,7 @@
             // 
             this.tbloginPassword.Location = new System.Drawing.Point(131, 64);
             this.tbloginPassword.Name = "tbloginPassword";
+            this.tbloginPassword.PasswordChar = '*';
             this.tbloginPassword.Size = new System.Drawing.Size(214, 20);
             this.tbloginPassword.TabIndex = 4;
             // 
