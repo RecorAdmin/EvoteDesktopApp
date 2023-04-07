@@ -154,6 +154,7 @@
             this.Controls.Add(this.label1);
             this.Name = "LoginForm";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
             this.gboxLogin.ResumeLayout(false);
             this.gboxLogin.PerformLayout();

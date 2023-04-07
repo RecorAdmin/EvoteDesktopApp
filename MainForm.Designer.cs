@@ -31,7 +31,6 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.candidateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contactUsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.viewCandidateListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,8 +47,6 @@
             // 
             // candidateToolStripMenuItem
             // 
-            this.candidateToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.viewCandidateListToolStripMenuItem});
             this.candidateToolStripMenuItem.Name = "candidateToolStripMenuItem";
             this.candidateToolStripMenuItem.Size = new System.Drawing.Size(78, 20);
             this.candidateToolStripMenuItem.Text = "Candidates";
@@ -60,12 +57,6 @@
             this.contactUsToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
             this.contactUsToolStripMenuItem.Text = "Contact Us";
             // 
-            // viewCandidateListToolStripMenuItem
-            // 
-            this.viewCandidateListToolStripMenuItem.Name = "viewCandidateListToolStripMenuItem";
-            this.viewCandidateListToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.viewCandidateListToolStripMenuItem.Text = "View Candidate List";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -75,6 +66,7 @@
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Evotes";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -87,7 +79,6 @@
 
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem candidateToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem viewCandidateListToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem contactUsToolStripMenuItem;
     }
 }
