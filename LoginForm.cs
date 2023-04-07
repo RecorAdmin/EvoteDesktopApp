@@ -48,9 +48,10 @@ namespace WindowsFormsApp1
 
                 if (valid)
                 {
+                    
+                    MainForm mainWindow = new MainForm(this);
+                    mainWindow.Show();
                     this.Hide();
-                    MainForm mainWindow = new MainForm();
-                    mainWindow.ShowDialog();
                 }
                 }catch  
                 (Exception ex) { 

@@ -12,9 +12,21 @@ namespace WindowsFormsApp1
 {
     public partial class MainForm : Form
     {
+        private LoginForm _login;
         public MainForm()
         {
             InitializeComponent();
+        }
+
+        public MainForm(LoginForm login)
+        {
+            InitializeComponent();
+            _login = login;
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _login.Close();
         }
     }
 }
