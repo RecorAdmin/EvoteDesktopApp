@@ -103,7 +103,7 @@ namespace WindowsFormsApp1
         {
             //to pass content in database to the form upon load event being activated
             var Parish = evotesEntity.difParishes.ToList();
-            ParishcomboBox.DisplayMember = "Name";
+            ParishcomboBox.DisplayMember = "Parish";
             ParishcomboBox.ValueMember = "ID";
             ParishcomboBox.DataSource = Parish;
 
