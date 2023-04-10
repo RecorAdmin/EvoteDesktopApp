@@ -12,12 +12,12 @@ namespace WindowsFormsApp1
 {
     public partial class LoginForm : Form
     {
-        private readonly EvotesEntities _db;
+        private readonly EvotesEntities2 _db;
 
         public LoginForm()
         {
-            _db = new EvotesEntities();
             InitializeComponent();
+            _db = new EvotesEntities2();
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -27,46 +27,33 @@ namespace WindowsFormsApp1
             {
                 
 
-                string username = tbUsername.Text;
+                string username = tbUsername.Text.Trim();
                 string loginPass = tbloginPassword.Text;
 
-                var valid = true;
-                var errorCode = "";
+                var user = _db.Ulogins.FirstOrDefault(u => u.username==username && u.password == loginPass);
 
-                    if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(loginPass))
-                    {
-                        valid = false;
-                        errorCode += ("Please Enter Missing Data \n\r");
-
-                    }
-
-                    if (username != null && string.IsNullOrWhiteSpace(loginPass) || string.IsNullOrWhiteSpace(username) && loginPass != null)
-                    {
-                        valid = false;
-                        errorCode += ("Username or Password is incorrect \n\r");
-                    }
-
-                if (valid)
+                if (user == null)
                 {
-                    
+                    MessageBox.Show("Please provide valid credentials");
+                }else
+                {
                     MainForm mainWindow = new MainForm(this);
                     mainWindow.Show();
                     this.Hide();
                 }
+
                 }catch  
                 (Exception ex) { 
 
-                MessageBox.Show(ex.Message);
-                // throw;
-            }
+                    MessageBox.Show(ex.Message);
+                }
             }
 
         private void linkRegis_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            var reglink = new RegistryForm();
+            var reglink = new RegistryForm(this);
             reglink.Show();
             this.Hide();
-
         }
     }
 }

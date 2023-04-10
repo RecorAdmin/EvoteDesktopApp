@@ -24,7 +24,7 @@ namespace WindowsFormsApp1
             _login = login;
         }
 
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        private void MainForm_FormClosing_1(object sender, FormClosingEventArgs e)
         {
             _login.Close();
         }

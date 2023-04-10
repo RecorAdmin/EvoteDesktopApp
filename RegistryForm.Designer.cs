@@ -29,8 +29,10 @@
         private void InitializeComponent()
         {
             this.gboxRegis = new System.Windows.Forms.GroupBox();
+            this.Username = new System.Windows.Forms.Label();
             this.MailBoxlabel = new System.Windows.Forms.Label();
             this.Communitylabel = new System.Windows.Forms.Label();
+            this.tbusername = new System.Windows.Forms.TextBox();
             this.Parishlabel = new System.Windows.Forms.Label();
             this.ParishcomboBox = new System.Windows.Forms.ComboBox();
             this.btnSighnUp = new System.Windows.Forms.Button();
@@ -40,7 +42,6 @@
             this.emaillabel = new System.Windows.Forms.Label();
             this.tbRgPass = new System.Windows.Forms.TextBox();
             this.tbEmail = new System.Windows.Forms.TextBox();
-            this.DOBdateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.DOBlabel = new System.Windows.Forms.Label();
             this.Namelabel = new System.Windows.Forms.Label();
             this.Addresslabel = new System.Windows.Forms.Label();
@@ -57,13 +58,17 @@
             this.tbmInitial = new System.Windows.Forms.TextBox();
             this.tbFname = new System.Windows.Forms.TextBox();
             this.EvotesLogo = new System.Windows.Forms.Label();
+            this.btnBack = new System.Windows.Forms.Button();
+            this.DOBdateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.gboxRegis.SuspendLayout();
             this.SuspendLayout();
             // 
             // gboxRegis
             // 
+            this.gboxRegis.Controls.Add(this.Username);
             this.gboxRegis.Controls.Add(this.MailBoxlabel);
             this.gboxRegis.Controls.Add(this.Communitylabel);
+            this.gboxRegis.Controls.Add(this.tbusername);
             this.gboxRegis.Controls.Add(this.Parishlabel);
             this.gboxRegis.Controls.Add(this.ParishcomboBox);
             this.gboxRegis.Controls.Add(this.btnSighnUp);
@@ -96,6 +101,15 @@
             this.gboxRegis.TabStop = false;
             this.gboxRegis.Text = "Registration ";
             // 
+            // Username
+            // 
+            this.Username.AutoSize = true;
+            this.Username.Location = new System.Drawing.Point(65, 306);
+            this.Username.Name = "Username";
+            this.Username.Size = new System.Drawing.Size(55, 13);
+            this.Username.TabIndex = 33;
+            this.Username.Text = "Username";
+            // 
             // MailBoxlabel
             // 
             this.MailBoxlabel.AutoSize = true;
@@ -113,6 +127,13 @@
             this.Communitylabel.Size = new System.Drawing.Size(58, 13);
             this.Communitylabel.TabIndex = 30;
             this.Communitylabel.Text = "Community";
+            // 
+            // tbusername
+            // 
+            this.tbusername.Location = new System.Drawing.Point(68, 283);
+            this.tbusername.Name = "tbusername";
+            this.tbusername.Size = new System.Drawing.Size(124, 20);
+            this.tbusername.TabIndex = 32;
             // 
             // Parishlabel
             // 
@@ -146,7 +167,7 @@
             // CPasslabel
             // 
             this.CPasslabel.AutoSize = true;
-            this.CPasslabel.Location = new System.Drawing.Point(66, 350);
+            this.CPasslabel.Location = new System.Drawing.Point(197, 345);
             this.CPasslabel.Name = "CPasslabel";
             this.CPasslabel.Size = new System.Drawing.Size(91, 13);
             this.CPasslabel.TabIndex = 25;
@@ -154,7 +175,7 @@
             // 
             // tbRgCPass
             // 
-            this.tbRgCPass.Location = new System.Drawing.Point(68, 327);
+            this.tbRgCPass.Location = new System.Drawing.Point(199, 322);
             this.tbRgCPass.Name = "tbRgCPass";
             this.tbRgCPass.Size = new System.Drawing.Size(124, 20);
             this.tbRgCPass.TabIndex = 24;
@@ -162,7 +183,7 @@
             // Passlabel
             // 
             this.Passlabel.AutoSize = true;
-            this.Passlabel.Location = new System.Drawing.Point(196, 300);
+            this.Passlabel.Location = new System.Drawing.Point(67, 345);
             this.Passlabel.Name = "Passlabel";
             this.Passlabel.Size = new System.Drawing.Size(53, 13);
             this.Passlabel.TabIndex = 23;
@@ -171,7 +192,7 @@
             // emaillabel
             // 
             this.emaillabel.AutoSize = true;
-            this.emaillabel.Location = new System.Drawing.Point(65, 300);
+            this.emaillabel.Location = new System.Drawing.Point(195, 306);
             this.emaillabel.Name = "emaillabel";
             this.emaillabel.Size = new System.Drawing.Size(32, 13);
             this.emaillabel.TabIndex = 22;
@@ -179,24 +200,17 @@
             // 
             // tbRgPass
             // 
-            this.tbRgPass.Location = new System.Drawing.Point(198, 277);
+            this.tbRgPass.Location = new System.Drawing.Point(69, 322);
             this.tbRgPass.Name = "tbRgPass";
             this.tbRgPass.Size = new System.Drawing.Size(124, 20);
             this.tbRgPass.TabIndex = 21;
             // 
             // tbEmail
             // 
-            this.tbEmail.Location = new System.Drawing.Point(68, 277);
+            this.tbEmail.Location = new System.Drawing.Point(198, 283);
             this.tbEmail.Name = "tbEmail";
             this.tbEmail.Size = new System.Drawing.Size(124, 20);
             this.tbEmail.TabIndex = 20;
-            // 
-            // DOBdateTimePicker
-            // 
-            this.DOBdateTimePicker.Location = new System.Drawing.Point(115, 171);
-            this.DOBdateTimePicker.Name = "DOBdateTimePicker";
-            this.DOBdateTimePicker.Size = new System.Drawing.Size(214, 20);
-            this.DOBdateTimePicker.TabIndex = 19;
             // 
             // DOBlabel
             // 
@@ -343,17 +357,37 @@
             this.EvotesLogo.TabIndex = 28;
             this.EvotesLogo.Text = "Evotes";
             // 
+            // btnBack
+            // 
+            this.btnBack.Location = new System.Drawing.Point(713, 12);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(75, 23);
+            this.btnBack.TabIndex = 30;
+            this.btnBack.Text = "Back";
+            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            // 
+            // DOBdateTimePicker
+            // 
+            this.DOBdateTimePicker.Location = new System.Drawing.Point(115, 171);
+            this.DOBdateTimePicker.Name = "DOBdateTimePicker";
+            this.DOBdateTimePicker.Size = new System.Drawing.Size(214, 20);
+            this.DOBdateTimePicker.TabIndex = 19;
+            this.DOBdateTimePicker.Value = new System.DateTime(2023, 4, 10, 0, 0, 0, 0);
+            // 
             // RegistryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(800, 496);
+            this.Controls.Add(this.btnBack);
             this.Controls.Add(this.gboxRegis);
             this.Controls.Add(this.EvotesLogo);
             this.Name = "RegistryForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "RegisterForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.RegistryForm_FormClosing);
             this.Load += new System.EventHandler(this.RegisterForm_Load);
             this.gboxRegis.ResumeLayout(false);
             this.gboxRegis.PerformLayout();
@@ -376,7 +410,6 @@
         private System.Windows.Forms.Label emaillabel;
         private System.Windows.Forms.TextBox tbRgPass;
         private System.Windows.Forms.TextBox tbEmail;
-        private System.Windows.Forms.DateTimePicker DOBdateTimePicker;
         private System.Windows.Forms.Label DOBlabel;
         private System.Windows.Forms.Label Namelabel;
         private System.Windows.Forms.Label Addresslabel;
@@ -393,5 +426,9 @@
         private System.Windows.Forms.TextBox tbmInitial;
         private System.Windows.Forms.TextBox tbFname;
         private System.Windows.Forms.Label EvotesLogo;
+        private System.Windows.Forms.Label Username;
+        private System.Windows.Forms.TextBox tbusername;
+        private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.DateTimePicker DOBdateTimePicker;
     }
 }

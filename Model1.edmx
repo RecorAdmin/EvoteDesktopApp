@@ -25,6 +25,7 @@
           <Property Name="gender" Type="nvarchar" MaxLength="50" />
           <Property Name="dateOfBirth" Type="datetime" />
           <Property Name="parishID" Type="int" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Ulogin">
           <Key>
@@ -60,14 +61,22 @@
     <edmx:ConceptualModels>
       <Schema Namespace="EvotesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="EvotesEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Ulogins" EntityType="EvotesModel.Ulogin" />
           <EntitySet Name="difParishes" EntityType="EvotesModel.difParish" />
           <EntitySet Name="registryRecords" EntityType="EvotesModel.registryRecord" />
-          <EntitySet Name="Ulogins" EntityType="EvotesModel.Ulogin" />
           <AssociationSet Name="FK_registryRecord_difParishes" Association="EvotesModel.FK_registryRecord_difParishes">
             <End Role="difParish" EntitySet="difParishes" />
             <End Role="registryRecord" EntitySet="registryRecords" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
+        <EntityType Name="Ulogin">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="difParish">
           <Key>
             <PropertyRef Name="ID" />
@@ -89,15 +98,8 @@
           <Property Name="gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="dateOfBirth" Type="DateTime" Precision="3" />
           <Property Name="parishID" Type="Int32" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="difParish" Relationship="EvotesModel.FK_registryRecord_difParishes" FromRole="registryRecord" ToRole="difParish" />
-        </EntityType>
-        <EntityType Name="Ulogin">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="password" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_registryRecord_difParishes">
           <End Type="EvotesModel.difParish" Role="difParish" Multiplicity="0..1" />
@@ -111,12 +113,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="EvotesModelStoreContainer" CdmEntityContainer="EvotesEntities2">
+          <EntitySetMapping Name="Ulogins">
+            <EntityTypeMapping TypeName="EvotesModel.Ulogin">
+              <MappingFragment StoreEntitySet="Ulogin">
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="difParishes">
             <EntityTypeMapping TypeName="EvotesModel.difParish">
               <MappingFragment StoreEntitySet="difParishes">
@@ -128,6 +139,7 @@
           <EntitySetMapping Name="registryRecords">
             <EntityTypeMapping TypeName="EvotesModel.registryRecord">
               <MappingFragment StoreEntitySet="registryRecord">
+                <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="parishID" ColumnName="parishID" />
                 <ScalarProperty Name="dateOfBirth" ColumnName="dateOfBirth" />
                 <ScalarProperty Name="gender" ColumnName="gender" />
@@ -140,16 +152,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Ulogins">
-            <EntityTypeMapping TypeName="EvotesModel.Ulogin">
-              <MappingFragment StoreEntitySet="Ulogin">
-                <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="username" ColumnName="username" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

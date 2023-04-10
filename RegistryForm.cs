@@ -12,14 +12,20 @@ namespace WindowsFormsApp1
 {
     public partial class RegistryForm : Form
     {
-        private readonly EvotesEntities _db;
+        private readonly EvotesEntities2 _db;
+        private LoginForm _login;
+
         public RegistryForm()
         {
             InitializeComponent();
-            //initializing an instance of the database entity
-            _db = new EvotesEntities();
         }
 
+        public RegistryForm(LoginForm login)
+        {
+            InitializeComponent();
+            _db = new EvotesEntities2();
+            _login = login;
+        }
 
         private void btnSighnUp_Click(object sender, EventArgs e)
         {
@@ -45,9 +51,12 @@ namespace WindowsFormsApp1
                 var parish = ParishcomboBox.Text;
                 string community = tbCommunity.Text;
                 string po = tbMailBox.Text;
+                string usern = tbusername.Text.Trim();
                 string email = tbEmail.Text;
                 string pass = tbRgPass.Text;
                 string cPass = tbRgCPass.Text;
+
+              
 
 
       ////////////validation to ensure content in the text box are validated///////////////
@@ -84,26 +93,27 @@ namespace WindowsFormsApp1
                     registryRecord.parishID = (int)ParishcomboBox.SelectedValue;
                     registryRecord.district = community;
                     registryRecord.poBox = po;
-
-                    loginRecord.username = email;
+                    registryRecord.email = email;
+                  
+                    loginRecord.username = usern;
                     loginRecord.password = pass;
 
                     
 
                     //message box to show after a valid form completion
-                    MessageBox.Show($"Name: {fname} {mInit} {lname}\n\r" +
+                    MessageBox.Show($"--Registration Successful--\n\r" +
+                        $"Name: {fname} {mInit}. {lname}\n\r" +
                         $"Gender: {gender}\n\r" +
-                        $"Address: {parish}, {community}, {po}\n\r" +
-                        $"Email/Username: {email}");
+                        $"Address: {community}, {po}, {parish}\n\r" +
+                        $"Email: {email}\n\r" +
+                        $"Username: {usern}");
 
                     //adding data entered to the actual database
                     _db.registryRecords.Add( registryRecord );
                     _db.Ulogins.Add( loginRecord );
                     _db.SaveChanges();
 
-                    var login = new LoginForm();
-                    this.Close();
-                    login.Show();
+                    
 
                     
                 }
@@ -127,6 +137,18 @@ namespace WindowsFormsApp1
             ParishcomboBox.ValueMember = "ID";
             ParishcomboBox.DataSource = Parish;
 
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            _login.Show();
+            
+        }
+
+        private void RegistryForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _login.Close();
         }
     }
 }

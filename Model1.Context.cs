@@ -13,9 +13,9 @@ namespace WindowsFormsApp1
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class EvotesEntities : DbContext
+    public partial class EvotesEntities2 : DbContext
     {
-        public EvotesEntities()
+        public EvotesEntities2()
             : base("name=EvotesEntities2")
         {
         }
@@ -25,8 +25,8 @@ namespace WindowsFormsApp1
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Ulogin> Ulogins { get; set; }
         public virtual DbSet<difParish> difParishes { get; set; }
         public virtual DbSet<registryRecord> registryRecords { get; set; }
-        public virtual DbSet<Ulogin> Ulogins { get; set; }
     }
 }

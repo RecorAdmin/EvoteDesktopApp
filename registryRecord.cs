@@ -23,6 +23,7 @@ namespace WindowsFormsApp1
         public string gender { get; set; }
         public Nullable<System.DateTime> dateOfBirth { get; set; }
         public Nullable<int> parishID { get; set; }
+        public string email { get; set; }
     
         public virtual difParish difParish { get; set; }
     }
