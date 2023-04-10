@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,7 +14,7 @@ namespace WindowsFormsApp1
     public partial class RegistryForm : Form
     {
         private readonly EvotesEntities2 _db;
-        private LoginForm _login;
+        private readonly LoginForm _login;
 
         public RegistryForm()
         {
@@ -31,6 +32,7 @@ namespace WindowsFormsApp1
         {
             try
             {
+
                 //passing the text entered into the text box to variables
                 string fname = tbFname.Text;
                 string mInit = tbmInitial.Text;
@@ -56,6 +58,7 @@ namespace WindowsFormsApp1
                 string pass = tbRgPass.Text;
                 string cPass = tbRgCPass.Text;
 
+
               
 
 
@@ -76,7 +79,21 @@ namespace WindowsFormsApp1
                     errorMessage += "Error! Password does not match!";
                 }
 
+                SHA256 sha = SHA256.Create();
 
+                //convert the input string to a byte array and compute the hash.
+                byte[] data = sha.ComputeHash(Encoding.UTF8.GetBytes(pass));
+
+                /*create a new string builder to collect the bytes and create a string*/
+                StringBuilder stringBuilder = new StringBuilder();
+
+                /*loop through each byte of the hashed data and format as a hexadecimal string */
+                for (int i = 0; i < data.Length; i++)
+                {
+                    stringBuilder.Append(data[i].ToString("x2"));
+                }
+
+                var hashedpass = stringBuilder.ToString();
 
                 if (Valid)
                 {
@@ -96,7 +113,7 @@ namespace WindowsFormsApp1
                     registryRecord.email = email;
                   
                     loginRecord.username = usern;
-                    loginRecord.password = pass;
+                    loginRecord.password = hashedpass;
 
                     
 
@@ -104,7 +121,7 @@ namespace WindowsFormsApp1
                     MessageBox.Show($"--Registration Successful--\n\r" +
                         $"Name: {fname} {mInit}. {lname}\n\r" +
                         $"Gender: {gender}\n\r" +
-                        $"Address: {community}, {po}, {parish}\n\r" +
+                        $"Address: {community},\n{po},\n{parish}\n\r" +
                         $"Email: {email}\n\r" +
                         $"Username: {usern}");
 
@@ -113,9 +130,10 @@ namespace WindowsFormsApp1
                     _db.Ulogins.Add( loginRecord );
                     _db.SaveChanges();
 
-                    
+                    this.Hide();
+                    _login.Show();
 
-                    
+
                 }
                 else
                 {

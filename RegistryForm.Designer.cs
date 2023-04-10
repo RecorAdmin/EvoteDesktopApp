@@ -42,6 +42,7 @@
             this.emaillabel = new System.Windows.Forms.Label();
             this.tbRgPass = new System.Windows.Forms.TextBox();
             this.tbEmail = new System.Windows.Forms.TextBox();
+            this.DOBdateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.DOBlabel = new System.Windows.Forms.Label();
             this.Namelabel = new System.Windows.Forms.Label();
             this.Addresslabel = new System.Windows.Forms.Label();
@@ -58,13 +59,13 @@
             this.tbmInitial = new System.Windows.Forms.TextBox();
             this.tbFname = new System.Windows.Forms.TextBox();
             this.EvotesLogo = new System.Windows.Forms.Label();
-            this.btnBack = new System.Windows.Forms.Button();
-            this.DOBdateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.gboxRegis.SuspendLayout();
             this.SuspendLayout();
             // 
             // gboxRegis
             // 
+            this.gboxRegis.Controls.Add(this.btnCancel);
             this.gboxRegis.Controls.Add(this.Username);
             this.gboxRegis.Controls.Add(this.MailBoxlabel);
             this.gboxRegis.Controls.Add(this.Communitylabel);
@@ -156,7 +157,7 @@
             // btnSighnUp
             // 
             this.btnSighnUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSighnUp.Location = new System.Drawing.Point(335, 340);
+            this.btnSighnUp.Location = new System.Drawing.Point(407, 358);
             this.btnSighnUp.Name = "btnSighnUp";
             this.btnSighnUp.Size = new System.Drawing.Size(75, 23);
             this.btnSighnUp.TabIndex = 26;
@@ -177,6 +178,7 @@
             // 
             this.tbRgCPass.Location = new System.Drawing.Point(199, 322);
             this.tbRgCPass.Name = "tbRgCPass";
+            this.tbRgCPass.PasswordChar = '*';
             this.tbRgCPass.Size = new System.Drawing.Size(124, 20);
             this.tbRgCPass.TabIndex = 24;
             // 
@@ -202,6 +204,7 @@
             // 
             this.tbRgPass.Location = new System.Drawing.Point(69, 322);
             this.tbRgPass.Name = "tbRgPass";
+            this.tbRgPass.PasswordChar = '*';
             this.tbRgPass.Size = new System.Drawing.Size(124, 20);
             this.tbRgPass.TabIndex = 21;
             // 
@@ -211,6 +214,14 @@
             this.tbEmail.Name = "tbEmail";
             this.tbEmail.Size = new System.Drawing.Size(124, 20);
             this.tbEmail.TabIndex = 20;
+            // 
+            // DOBdateTimePicker
+            // 
+            this.DOBdateTimePicker.Location = new System.Drawing.Point(115, 171);
+            this.DOBdateTimePicker.Name = "DOBdateTimePicker";
+            this.DOBdateTimePicker.Size = new System.Drawing.Size(214, 20);
+            this.DOBdateTimePicker.TabIndex = 19;
+            this.DOBdateTimePicker.Value = new System.DateTime(2023, 4, 10, 0, 0, 0, 0);
             // 
             // DOBlabel
             // 
@@ -357,23 +368,16 @@
             this.EvotesLogo.TabIndex = 28;
             this.EvotesLogo.Text = "Evotes";
             // 
-            // btnBack
+            // btnCancel
             // 
-            this.btnBack.Location = new System.Drawing.Point(713, 12);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(75, 23);
-            this.btnBack.TabIndex = 30;
-            this.btnBack.Text = "Back";
-            this.btnBack.UseVisualStyleBackColor = true;
-            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
-            // 
-            // DOBdateTimePicker
-            // 
-            this.DOBdateTimePicker.Location = new System.Drawing.Point(115, 171);
-            this.DOBdateTimePicker.Name = "DOBdateTimePicker";
-            this.DOBdateTimePicker.Size = new System.Drawing.Size(214, 20);
-            this.DOBdateTimePicker.TabIndex = 19;
-            this.DOBdateTimePicker.Value = new System.DateTime(2023, 4, 10, 0, 0, 0, 0);
+            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.Location = new System.Drawing.Point(326, 358);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 30;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // RegistryForm
             // 
@@ -381,7 +385,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(800, 496);
-            this.Controls.Add(this.btnBack);
             this.Controls.Add(this.gboxRegis);
             this.Controls.Add(this.EvotesLogo);
             this.Name = "RegistryForm";
@@ -428,7 +431,7 @@
         private System.Windows.Forms.Label EvotesLogo;
         private System.Windows.Forms.Label Username;
         private System.Windows.Forms.TextBox tbusername;
-        private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.DateTimePicker DOBdateTimePicker;
     }
 }
