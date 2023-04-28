@@ -81,6 +81,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CandidateRegistry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CandidateRegistry.Designer.cs">
+      <DependentUpon>CandidateRegistry.cs</DependentUpon>
+    </Compile>
     <Compile Include="difParish.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -125,6 +131,9 @@
     <Compile Include="Ulogin.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="CandidateRegistry.resx">
+      <DependentUpon>CandidateRegistry.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
