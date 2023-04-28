@@ -248,7 +248,7 @@
             this.groupBox1.Controls.Add(this.tbCfName);
             this.groupBox1.Location = new System.Drawing.Point(179, 91);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(451, 386);
+            this.groupBox1.Size = new System.Drawing.Size(423, 386);
             this.groupBox1.TabIndex = 20;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Registration";
