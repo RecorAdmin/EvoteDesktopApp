@@ -28,5 +28,24 @@ namespace WindowsFormsApp1
         {
             _login.Close();
         }
+
+        private void addNewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var can_registry = new CandidateRegistry();
+            can_registry.MdiParent = this;
+            can_registry.Show();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var candi_list = new Candi_Management();
+            candi_list.MdiParent = this;
+            candi_list.Show();
+        }
     }
 }

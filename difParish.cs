@@ -17,12 +17,15 @@ namespace WindowsFormsApp1
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public difParish()
         {
+            this.CRegistries = new HashSet<CRegistry>();
             this.registryRecords = new HashSet<registryRecord>();
         }
     
         public int ID { get; set; }
         public string Parish { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CRegistry> CRegistries { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<registryRecord> registryRecords { get; set; }
     }

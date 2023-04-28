@@ -5,6 +5,19 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="EvotesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CRegistry">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="firstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="mInitial" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="lastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="gender" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="parishID" Type="int" Nullable="false" />
+          <Property Name="community" Type="nvarchar" MaxLength="50" />
+          <Property Name="communityActivities" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="difParishes">
           <Key>
             <PropertyRef Name="ID" />
@@ -35,6 +48,18 @@
           <Property Name="username" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="password" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
+        <Association Name="FK_CRegistry_difParishes">
+          <End Role="difParishes" Type="Self.difParishes" Multiplicity="1" />
+          <End Role="CRegistry" Type="Self.CRegistry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="difParishes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CRegistry">
+              <PropertyRef Name="parishID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_registryRecord_difParishes">
           <End Role="difParishes" Type="Self.difParishes" Multiplicity="0..1" />
           <End Role="registryRecord" Type="Self.registryRecord" Multiplicity="*" />
@@ -48,9 +73,14 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="EvotesModelStoreContainer">
+          <EntitySet Name="CRegistry" EntityType="Self.CRegistry" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="difParishes" EntityType="Self.difParishes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="registryRecord" EntityType="Self.registryRecord" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ulogin" EntityType="Self.Ulogin" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CRegistry_difParishes" Association="Self.FK_CRegistry_difParishes">
+            <End Role="difParishes" EntitySet="difParishes" />
+            <End Role="CRegistry" EntitySet="CRegistry" />
+          </AssociationSet>
           <AssociationSet Name="FK_registryRecord_difParishes" Association="Self.FK_registryRecord_difParishes">
             <End Role="difParishes" EntitySet="difParishes" />
             <End Role="registryRecord" EntitySet="registryRecord" />
@@ -61,21 +91,32 @@
     <edmx:ConceptualModels>
       <Schema Namespace="EvotesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="EvotesEntities2" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Ulogins" EntityType="EvotesModel.Ulogin" />
+          <EntitySet Name="CRegistries" EntityType="EvotesModel.CRegistry" />
           <EntitySet Name="difParishes" EntityType="EvotesModel.difParish" />
           <EntitySet Name="registryRecords" EntityType="EvotesModel.registryRecord" />
+          <EntitySet Name="Ulogins" EntityType="EvotesModel.Ulogin" />
+          <AssociationSet Name="FK_CRegistry_difParishes" Association="EvotesModel.FK_CRegistry_difParishes">
+            <End Role="difParish" EntitySet="difParishes" />
+            <End Role="CRegistry" EntitySet="CRegistries" />
+          </AssociationSet>
           <AssociationSet Name="FK_registryRecord_difParishes" Association="EvotesModel.FK_registryRecord_difParishes">
             <End Role="difParish" EntitySet="difParishes" />
             <End Role="registryRecord" EntitySet="registryRecords" />
           </AssociationSet>
-          </EntityContainer>
-        <EntityType Name="Ulogin">
+        </EntityContainer>
+        <EntityType Name="CRegistry">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="password" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="firstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="mInitial" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="lastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="gender" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="parishID" Type="Int32" Nullable="false" />
+          <Property Name="community" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="communityActivities" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="difParish" Relationship="EvotesModel.FK_CRegistry_difParishes" FromRole="CRegistry" ToRole="difParish" />
         </EntityType>
         <EntityType Name="difParish">
           <Key>
@@ -83,6 +124,7 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Parish" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CRegistries" Relationship="EvotesModel.FK_CRegistry_difParishes" FromRole="difParish" ToRole="CRegistry" />
           <NavigationProperty Name="registryRecords" Relationship="EvotesModel.FK_registryRecord_difParishes" FromRole="difParish" ToRole="registryRecord" />
         </EntityType>
         <EntityType Name="registryRecord">
@@ -101,6 +143,26 @@
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="difParish" Relationship="EvotesModel.FK_registryRecord_difParishes" FromRole="registryRecord" ToRole="difParish" />
         </EntityType>
+        <EntityType Name="Ulogin">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_CRegistry_difParishes">
+          <End Type="EvotesModel.difParish" Role="difParish" Multiplicity="1" />
+          <End Type="EvotesModel.CRegistry" Role="CRegistry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="difParish">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CRegistry">
+              <PropertyRef Name="parishID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_registryRecord_difParishes">
           <End Type="EvotesModel.difParish" Role="difParish" Multiplicity="0..1" />
           <End Type="EvotesModel.registryRecord" Role="registryRecord" Multiplicity="*" />
@@ -119,11 +181,16 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="EvotesModelStoreContainer" CdmEntityContainer="EvotesEntities2">
-          <EntitySetMapping Name="Ulogins">
-            <EntityTypeMapping TypeName="EvotesModel.Ulogin">
-              <MappingFragment StoreEntitySet="Ulogin">
-                <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="username" ColumnName="username" />
+          <EntitySetMapping Name="CRegistries">
+            <EntityTypeMapping TypeName="EvotesModel.CRegistry">
+              <MappingFragment StoreEntitySet="CRegistry">
+                <ScalarProperty Name="communityActivities" ColumnName="communityActivities" />
+                <ScalarProperty Name="community" ColumnName="community" />
+                <ScalarProperty Name="parishID" ColumnName="parishID" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="mInitial" ColumnName="mInitial" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -152,7 +219,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          </EntityContainerMapping>
+          <EntitySetMapping Name="Ulogins">
+            <EntityTypeMapping TypeName="EvotesModel.Ulogin">
+              <MappingFragment StoreEntitySet="Ulogin">
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

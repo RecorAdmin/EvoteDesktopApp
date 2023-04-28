@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.gboxRegis = new System.Windows.Forms.GroupBox();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.Username = new System.Windows.Forms.Label();
             this.MailBoxlabel = new System.Windows.Forms.Label();
             this.Communitylabel = new System.Windows.Forms.Label();
@@ -59,7 +60,6 @@
             this.tbmInitial = new System.Windows.Forms.TextBox();
             this.tbFname = new System.Windows.Forms.TextBox();
             this.EvotesLogo = new System.Windows.Forms.Label();
-            this.btnCancel = new System.Windows.Forms.Button();
             this.gboxRegis.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -101,6 +101,17 @@
             this.gboxRegis.TabIndex = 29;
             this.gboxRegis.TabStop = false;
             this.gboxRegis.Text = "Registration ";
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.Location = new System.Drawing.Point(326, 358);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 30;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // Username
             // 
@@ -368,17 +379,6 @@
             this.EvotesLogo.TabIndex = 28;
             this.EvotesLogo.Text = "Evotes";
             // 
-            // btnCancel
-            // 
-            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.Location = new System.Drawing.Point(326, 358);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 30;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnBack_Click);
-            // 
             // RegistryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -387,6 +387,8 @@
             this.ClientSize = new System.Drawing.Size(800, 496);
             this.Controls.Add(this.gboxRegis);
             this.Controls.Add(this.EvotesLogo);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "RegistryForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "RegisterForm";

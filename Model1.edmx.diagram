@@ -5,11 +5,13 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="a16bba35c51040a89c40769bd1ddd01b" Name="Diagram1">
-        <EntityTypeShape EntityType="EvotesModel.Ulogin" Width="1.5" PointX="6.375" PointY="1.5" />
-        <EntityTypeShape EntityType="EvotesModel.difParish" Width="1.5" PointX="0.75" PointY="1.75" />
-        <EntityTypeShape EntityType="EvotesModel.registryRecord" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="EvotesModel.CRegistry" Width="1.5" PointX="0.75" PointY="1.25" />
+        <EntityTypeShape EntityType="EvotesModel.difParish" Width="1.5" PointX="3.375" PointY="2.125" />
+        <EntityTypeShape EntityType="EvotesModel.registryRecord" Width="1.5" PointX="6.5" PointY="1.25" />
+        <EntityTypeShape EntityType="EvotesModel.Ulogin" Width="1.5" PointX="9.75" PointY="1.125" />
+        <AssociationConnector Association="EvotesModel.FK_CRegistry_difParishes" />
         <AssociationConnector Association="EvotesModel.FK_registryRecord_difParishes" />
-        </Diagram>
+      </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

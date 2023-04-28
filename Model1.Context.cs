@@ -25,8 +25,9 @@ namespace WindowsFormsApp1
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Ulogin> Ulogins { get; set; }
+        public virtual DbSet<CRegistry> CRegistries { get; set; }
         public virtual DbSet<difParish> difParishes { get; set; }
         public virtual DbSet<registryRecord> registryRecords { get; set; }
+        public virtual DbSet<Ulogin> Ulogins { get; set; }
     }
 }

@@ -139,6 +139,7 @@
             this.btnCsubmit.TabIndex = 10;
             this.btnCsubmit.Text = "Submit";
             this.btnCsubmit.UseVisualStyleBackColor = true;
+            this.btnCsubmit.Click += new System.EventHandler(this.btnCsubmit_Click);
             // 
             // label2
             // 
@@ -227,6 +228,9 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.groupBox1.AutoSize = true;
+            this.groupBox1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.groupBox1.Controls.Add(this.cbParishes);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.label9);
@@ -246,15 +250,16 @@
             this.groupBox1.Controls.Add(this.tbClName);
             this.groupBox1.Controls.Add(this.tbCmInitial);
             this.groupBox1.Controls.Add(this.tbCfName);
-            this.groupBox1.Location = new System.Drawing.Point(179, 91);
+            this.groupBox1.Location = new System.Drawing.Point(123, 94);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(423, 386);
+            this.groupBox1.Size = new System.Drawing.Size(403, 369);
             this.groupBox1.TabIndex = 20;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Registration";
             // 
             // cbParishes
             // 
+            this.cbParishes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbParishes.FormattingEnabled = true;
             this.cbParishes.Location = new System.Drawing.Point(35, 155);
             this.cbParishes.Name = "cbParishes";
@@ -265,11 +270,17 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(770, 528);
+            this.ClientSize = new System.Drawing.Size(628, 496);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "CandidateRegistry";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Candidate Registration";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.CandidateRegistry_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
